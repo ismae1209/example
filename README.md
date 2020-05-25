@@ -7,13 +7,13 @@ insert your flowchart here
 
 It takes many steps.
 
-Step1:
-I have made a blast search in lisa. The script is named "runblast.sh".
-The usage is: mzhou2@lisa: bash runblast.sh
+	Step1:
+	I have made a blast search in lisa. The script is named "runblast.sh".
+	The usage is: mzhou2@lisa: bash runblast.sh
 
-Step2:
-copy the output to another space.
-The usage is: mzhou2@lisa: cp xxx.txt ../
+	Step2:
+	copy the output to another space.
+	The usage is: mzhou2@lisa: cp xxx.txt ../
 
 
 You can find the example output in this github repository as: example_output.txt
