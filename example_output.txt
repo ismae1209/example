@@ -1,0 +1,37 @@
+#!/bin/bash
+#Set job requirements
+#SBATCH -c 16
+#SBATCH -t 60:00
+# change directory to my directory where I run my BBH
+cd /home/mzhou2/MM/BBH
+
+# cp the input files to the TMPDIR in cloud
+cp ATCC_new.faa $TMPDIR
+cp A_niger_CBS_513_88_current_orf_trans_all.fasta $TMPDIR
+
+# change directory to the TMPDIR in cloud
+cd $TMPDIR
+
+# i want to see if i copied the correct files to TMPDIR
+ls -la -h
+
+# load blast module
+module load blast
+
+# format db
+formatdb -i A_niger_CBS_513_88_current_orf_trans_all.fasta -n CBS
+
+# see if formatdb is successful, if it is i should have a lot of database files
+ls -la -h
+
+# run blast CBS--> ATCC
+blastp -db CBS -query ATCC_new.faa -evalue 1E-40 -outfmt 6 -out CBS_ATCC_1e-40_1.out
+
+# see if it is okay, if it is okay my output file should be created and not size 0
+ls -la -h
+
+# copy the output file to my login machine
+cp $TMPDIR/CBS_ATCC_1e-40_1.out /home/mzhou2/MM/BBH
+
+# see if the copying is okay, if yes it should show up
+ls -la -h /home/mzhou2/MM/BBH
